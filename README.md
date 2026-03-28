@@ -1,72 +1,109 @@
 # WonderLust
 
-## Description
-WonderLust is a project that allows users to explore various travel destinations and find the perfect adventure tailored to their preferences.
+An Airbnb-style **property listing platform** built while learning the MERN stack fundamentals.
 
-## Features
-- Discover popular travel destinations
-- Personalized travel recommendations
-- User-friendly interface
-- Explore travel packages and deals
+> This is **not** a real booking system. It’s a **CRUD + Auth** web app for creating and managing travel stay listings and reviews.
 
-## Tech Stack
-- HTML/CSS
-- JavaScript
-- React
-- Node.js
-- Express
-- MongoDB
+## What you can do
+
+### Listings
+- Browse listings (places to stay)
+- View listing details
+- **Authenticated users** can:
+  - Create a listing (title, price, location, image, description)
+  - Edit/Delete **their own** listings
+
+### Reviews
+- Read reviews left by other users
+- **Authenticated users** can add reviews/comments to listings
+
+### Security
+- **Authentication**: signup/login
+- **Authorization**: only the listing owner can edit/delete their listing
+
+## Tech Stack (actual)
+
+### Backend
+- **Node.js**
+- **Express.js**
+
+### Frontend (SSR)
+- **EJS (Embedded JavaScript Templates)**
+- **HTML / CSS / basic JavaScript**
+
+### Database
+- **MongoDB**
+- **Mongoose**
+
+### Authentication & Sessions
+- **Passport.js**
+- **passport-local**
+- **express-session**
+
+### Media uploads
+- **Multer** (file upload middleware)
+- **Cloudinary** (image storage)
+
+### Other tooling
+- **dotenv** (environment variables)
+- **connect-flash** (flash messages)
+- **method-override** (PUT/DELETE from HTML forms)
+- **Joi** (request validation — if present in the codebase)
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js installed on your local machine.
-- A code editor like VSCode.
-- Basic knowledge of JavaScript and React.
+- Node.js (LTS recommended)
+- MongoDB (local or Atlas)
+- Cloudinary account (for image uploads)
 
 ### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ER-DHRUV/WonderLust.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd WonderLust
-   ```
-3. Install the necessary packages:
-   ```bash
-   npm install
-   ```
-
-## Usage
-After installation, you can start the local server:
 ```bash
-npm start
-``` 
-Your web app should now be running on `http://localhost:3000`.
-
-## Project Structure
-```
-WonderLust/
-├── public/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── App.js
-│   └── index.js
-└── package.json
+git clone https://github.com/ER-DHRUV/WonderLust.git
+cd WonderLust
+npm install
 ```
 
 ## Environment Variables
-Create a `.env` file in the root directory and add the following variables:
-- `PORT=3000`
-- `MONGODB_URI=<your_mongodb_uri>`
+Create a `.env` file in the project root.
 
-## Contributing
-Contributions are welcome! Please submit a pull request or open an issue to discuss your changes.
+Common variables used in this kind of setup (adjust names to match the repo):
+```bash
+# server
+PORT=3000
+SESSION_SECRET=your_session_secret
+
+# database
+MONGODB_URI=mongodb://127.0.0.1:27017/wonderlust
+
+# cloudinary
+CLOUDINARY_CLOUD_NAME=xxxx
+CLOUDINARY_KEY=xxxx
+CLOUDINARY_SECRET=xxxx
+```
+
+## Run Locally
+```bash
+npm start
+```
+Then open:
+- http://localhost:3000
+
+If the project uses `nodemon` in dev, you can add/run:
+```bash
+npm run dev
+```
+
+## CRUD Overview (high level)
+This app follows a classic SSR + REST-ish CRUD approach:
+- **Listings**: create/read/update/delete
+- **Reviews**: create/read (and optionally delete)
+
+Because forms only support `GET`/`POST`, updates/deletes are typically handled via **method-override**.
 
 ## License
-This project is licensed under the MIT License.
+Add a license if you plan to make the usage terms explicit (MIT is common for learning projects).
 
-## Contact
-For any questions or inquiries, please reach out to ER-DHRUV on GitHub: [ER-DHRUV](https://github.com/ER-DHRUV)
+---
+
+If you find a mismatch between this README and the code (env var names, scripts, routes), feel free to open an issue/PR or tell me what files to check and I’ll tailor it exactly.
